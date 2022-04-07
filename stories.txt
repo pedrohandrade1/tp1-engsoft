@@ -1,0 +1,27 @@
+História 1: Um professor pode logar na plataforma como um usuário professor.
+
+Tarefa 1: Definir interface web na página de login
+Tarefa 2: Criar interface de usuario professor em db e no sistema
+Tarefa 3: Criar um sistema de autenticação no backend
+Tarefa 4: Implementar pagina web de login
+Tarefa 5: Integrar pagina de login com sistema de autenticação
+
+Historia 2: Um usuario pode logar na plataforma como um usuário aluno.
+
+Tarefa 1: Criar interface de usuario aluno em db e no sistema
+
+Historia 3: Um professor pode criar uma nova turma
+
+Tarefa 1: Definir interface web de página de criação de turma
+Tarefa 1: Definir interface web de visualização de turma
+Tarefa 3: Criar interface de turma em db e no sistema
+Tarefa 4: Implementar pagina web de criacao de turma
+Tarefa 5: Implementar pagina web de visualizacao de turma
+
+Historia 4: Um professor pode adicionar uma prova multipla escolha no sistema para uma certa turma
+
+Tarefa 1: Definir interface web de adição de prova multipla escolha
+Tarefa 2: Definir interface web de visualizacao da prova criada
+Tarefa 3: Criar interface de prova em db e no sistema
+Tarefa 4: Implementar pagina web de criacao de prova
+Tarefa 5: Implementar pagina web de visualizacao da prova criada
