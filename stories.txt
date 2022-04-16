@@ -1,27 +1,31 @@
-História 1: Um professor pode logar na plataforma como um usuário professor.
+História 1: Um usuário pode logar na plataforma.
 
-Tarefa 1: Definir interface web na página de login
-Tarefa 2: Criar interface de usuario professor em db e no sistema
-Tarefa 3: Criar um sistema de autenticação no backend
-Tarefa 4: Implementar pagina web de login
-Tarefa 5: Integrar pagina de login com sistema de autenticação
+Tarefa 1: Definir interface web na página de login (design)
+Tarefa 2: Criar interface de usuario professor em db e no sistema (back)
+Tarefa 3: Criar interface de usuario aluno em db e no sistema (back)
+Tarefa 4: Criar um sistema de autenticação no backend (back)
+Tarefa 5: Implementar pagina web de login (front)
+Tarefa 6: Integrar pagina de login com sistema de autenticação (back)
 
-Historia 2: Um usuario pode logar na plataforma como um usuário aluno.
+História 2: Um professor pode adicionar uma prova de multipla escolha no sistema para uma certa turma.
 
-Tarefa 1: Criar interface de usuario aluno em db e no sistema
+Tarefa 1: Definir interface web home para o professor (design)
+Tarefa 2: Definir interface web de elaboração de prova multipla escolha (design)
+Tarefa 3: Criar interface de prova em db e no sistema (back)
+Tarefa 4: Criar mecanismo no backend de adição de prova (back)
+Tarefa 5: Implementar pagina web de criação de prova (front)
+Tarefa 6: Implementar pagina web de visualização da prova criada (front)
 
-Historia 3: Um professor pode criar uma nova turma
+História 3: Um aluno pode visualizar suas atividades/provas
 
-Tarefa 1: Definir interface web de página de criação de turma
-Tarefa 1: Definir interface web de visualização de turma
-Tarefa 3: Criar interface de turma em db e no sistema
-Tarefa 4: Implementar pagina web de criacao de turma
-Tarefa 5: Implementar pagina web de visualizacao de turma
+Tarefa 1: Definir interface web home para o aluno (design)
+Tarefa 2: Implementar pagina web de provas a serem realizadas (front)
+Tarefa 3: Implementar pagina web de provas já realizadas (front)
+Tarefa 4: Criar mecanismo que retorna todas as provas do aluno (back)
 
-Historia 4: Um professor pode adicionar uma prova multipla escolha no sistema para uma certa turma
+História 4: Um aluno pode fazer a atividade/prova
 
-Tarefa 1: Definir interface web de adição de prova multipla escolha
-Tarefa 2: Definir interface web de visualizacao da prova criada
-Tarefa 3: Criar interface de prova em db e no sistema
-Tarefa 4: Implementar pagina web de criacao de prova
-Tarefa 5: Implementar pagina web de visualizacao da prova criada
+Tarefa 1: Definir interface web para o aluno resolver a prova (design)
+Tarefa 2: Implementar pagina web de resolução da prova (front)
+Tarefa 3: Criar interface de provas resolvidas do aluno (back)
+Tarefa 4: Integrar pagina de resolução da prova com o backend (back)
