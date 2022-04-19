@@ -1,0 +1,8 @@
+
+primary_font: https://fonts.google.com/specimen/Source+Sans+Pro
+secondary_font: https://fonts.google.com/specimen/Inconsolata
+
+
+primaty_color: #2615A3
+secondary_color:#4D37F0
+contrast_color:#F08F4F
