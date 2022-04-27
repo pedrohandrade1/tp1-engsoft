@@ -23,7 +23,7 @@ Node JS e SQL vão ser utilizados para o backend e HTML, CSS e JavaScript para o
 
     Tarefa 5: Implementar pagina web de login (front) - Rita
 
-    Tarefa 6: Integrar pagina de login com sistema de autenticação (back) - Gabriel
+    Tarefa 6: Integrar pagina de login com sistema de autenticação (front) - Rita
 
 ### História 2: Um professor pode adicionar uma prova de multipla escolha no sistema para uma certa turma.
 
