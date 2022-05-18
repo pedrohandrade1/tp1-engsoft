@@ -6,10 +6,21 @@ let router = express.Router();
 router
     .route("/auth/:email/:password")
     .get((req, res) => {
-        const email = req.params.email;
-        const password = req.params.password;
-
-        res.send(`get with email = ${email} and password = ${password}`);
+        const { email, password } = req.params;
+        if (email && password) {
+            console.log(req.session)
+            if (req.session.authenticated) {
+                console.log("authentificado")
+            } else {
+                req.session.authenticated = true;
+                req.session.user = {
+                    id: "45"
+                };
+            }
+            res.send(`get with email = ${email} and password = ${password}`);
+        } else {
+            console.log("sem senha e email")
+        }
     })
     .post((req, res) => {
         const email = req.params.email;
