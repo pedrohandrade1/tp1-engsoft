@@ -1,7 +1,22 @@
 const express = require('express');
+const session = require('express-session');
+
 const app = express();
+
+app.use(session({
+  secret: 'secret-key',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+const students = require('./routes/students');
+const teachers = require('./routes/teachers');
+const tests = require('./routes/tests');
 const users = require('./routes/users');
 
+app.use("/students", students);
+app.use("/teachers", teachers);
+app.use("/tests", tests);
 app.use("/users", users);
 
 app.get('/', (req, res) => {
@@ -12,8 +27,8 @@ const DOMAIN = "localhost";
 const PORT = process.env.port || 5500;
 
 app.listen(PORT, (error) => {
-    if (error) {
-        return console.error("Error: ", error);
-    }
-    console.log(`Server running... at  http://${DOMAIN}:${PORT}/`)
+  if (error) {
+    return console.error("Error: ", error);
+  }
+  console.log(`Server running... at  http://${DOMAIN}:${PORT}/`)
 });
