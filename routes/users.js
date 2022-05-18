@@ -2,7 +2,7 @@
 const express = require('express');
 let router = express.Router();
 
-//  Authenticates the user
+//  Authenticate the user
 router
     .route("/auth/:email/:password")
     .get((req, res) => {
@@ -18,7 +18,7 @@ router
         res.send(`post with email = ${email} and password = ${password}`);
     });
 
-// Gets the user's personal information
+// Get the user's personal information
 router
     .route("/personal/:userId")
     .get((req, res) => {
@@ -26,14 +26,5 @@ router
 
         res.send(`get with userId = ${userId}`);
     });
-
-// Gets user tests
-router
-    .route("/tests/:userId")
-    .get((req, res) => {
-        const userId = req.params.userId;
-
-        res.send(`get with userId = ${userId}`);
-    })
 
 module.exports = router;
