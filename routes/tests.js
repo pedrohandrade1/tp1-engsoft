@@ -4,7 +4,7 @@ let router = express.Router();
 
 // Get test data
 router
-    .route("/:testId")
+    .route("/:testId/")
     .get((req, res) => {
         const testId = req.params.testId;
 

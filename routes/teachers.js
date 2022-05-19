@@ -4,7 +4,7 @@ let router = express.Router();
 
 // Get test statistics
 router
-    .route("tests/:testId")
+    .route("tests/:testId/")
     .get((req, res) => {
         const testId = req.params.testId;
 
@@ -12,7 +12,7 @@ router
     })
 
 router
-    .route("/new/")
+    .route("tests/new/")
     .post((req, res) => {
         const header = req.body.header;
         const options = req.body.options;

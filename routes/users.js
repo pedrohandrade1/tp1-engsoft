@@ -31,7 +31,7 @@ router
 
 // Get the user's personal information
 router
-    .route("/personal/:userId")
+    .route("/personal/")
     .get((req, res) => {
         const userId = req.params.userId;
 

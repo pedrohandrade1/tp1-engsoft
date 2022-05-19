@@ -4,7 +4,7 @@ let router = express.Router();
 
 // Get student tests to do
 router
-    .route("/tests/todo/:userId")
+    .route("/tests/todo/")
     .get((req, res) => {
         const userId = req.params.userId;
 
@@ -13,7 +13,7 @@ router
 
 // Get student tests done list
 router
-    .route("/tests/done/:userId")
+    .route("/tests/done/")
     .get((req, res) => {
         const userId = req.params.userId;
 
