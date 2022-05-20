@@ -5,13 +5,13 @@ const db = require('../mysql/teachers')
 let router = express.Router();
 
 //  Get test statistics
-router
+/*router
     .route("tests/:testId/")
     .get((req, res) => {
         const userId = req.session.user.id;
         const testId = req.params.testId;
         db.selectTestStats(userId, testId);
-    })
+    })*/
 
 //  Create new test
 router
@@ -21,5 +21,5 @@ router
         const testInfo = req.body;
         db.insertTest(userId, testInfo);
     })
-    
+
 module.exports = router;

@@ -21,11 +21,11 @@ router
     })
 
 // Get student test done data
-router
+/*router
     .route("/tests/:testId/")
     .get((req, res) => {
         const userId = req.session.user.id;
         db.selectTestDoneInfo(userId);
-    })
+    })*/
 
 module.exports = router;
