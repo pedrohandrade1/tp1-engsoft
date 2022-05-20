@@ -1,23 +1,25 @@
 "use strict"
 const express = require('express');
+const db = require('../mysql/teachers')
+
 let router = express.Router();
 
-// Get test statistics
+//  Get test statistics
 router
-    .route("tests/:testId")
+    .route("tests/:testId/")
     .get((req, res) => {
+        const userId = req.session.user.id;
         const testId = req.params.testId;
-
-        res.send(`get with testId = ${testId}`);
+        db.selectTestStats(userId, testId);
     })
 
+//  Create new test
 router
-    .route("/new/")
+    .route("tests/new/")
     .post((req, res) => {
-        const header = req.body.header;
-        const options = req.body.options;
-        const answer = req.body.answer;
-
-        res.send(`get question: \n${header}\n${options}\n${answer}`);
+        const userId = req.session.user.id;
+        const testInfo = req.body;
+        db.insertTest(userId, testInfo);
     })
+    
 module.exports = router;
