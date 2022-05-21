@@ -42,6 +42,7 @@ async function insertTest (userId, classId, testInfo) {
     return;
 }
 
+//  Cria uma questão nova
 async function insertQuestion (testId, questionInfo) {
     const conn = await connect();
     const { header, options, answer } = questionInfo;
@@ -53,4 +54,16 @@ async function insertQuestion (testId, questionInfo) {
     VALUES (${testId},${header}, ${a}, ${b}, ${c}, ${d}, ${e}, ${answer});`)
 }
 
-module.exports = { authenticateTeacher, selectTeacherPersonalInfo, insertTest };
+//  Retorna as provas criadas pelo professor logado
+async function  selectTestsCreated(userId) {
+    const conn = await connect();
+    return await conn.query(`SELECT ${userId}`)
+}
+
+//  Retorna as questões de uma prova
+async function selectTestInfo (userId, testId) {
+    const conn = await connect();
+    return await conn.query(`SELECT ${userId}`)
+}
+
+module.exports = { authenticateTeacher, selectTeacherPersonalInfo, insertTest, selectTestsCreated, selectTestInfo };
