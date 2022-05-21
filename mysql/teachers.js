@@ -62,10 +62,4 @@ async function  selectTestsCreated(userId) {
     WHERE idEducator = ${userId};`)
 }
 
-//  Retorna as questões de uma prova
-async function selectTestInfo (userId, testId) {
-    const conn = await connect();
-    return await conn.query(`SELECT ${userId}`)
-}
-
-module.exports = { authenticateTeacher, selectTeacherPersonalInfo, insertTest, selectTestsCreated, selectTestInfo };
+module.exports = { authenticateTeacher, selectTeacherPersonalInfo, insertTest, selectTestsCreated };
