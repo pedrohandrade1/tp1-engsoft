@@ -25,6 +25,7 @@ app.use("/tests", tests);
 //  Defines static paths
 app.use("/assets", express.static(path.resolve(__dirname, "./frontend/assets")));
 app.use("/css", express.static(path.resolve(__dirname, "./frontend/css")));
+app.use("/js", express.static(path.resolve(__dirname, "./frontend/js")));
 //app.use("/html", express.static(path.resolve(__dirname, "./frontend/html")));
 
 app.get("/login/*", (req, res) => {
