@@ -1,7 +1,19 @@
 const connect = require("./connection");
 
+//  Autentifica estudante 
+async function authenticateStudent (email, password) {
+    const conn = await connect();
+    return await conn.query(`SELECT email = ${email} AND password = ${password};`) // Obs: retorna user_id
+}
+
+//  Retorna as informações pessoais do estudante logado
+async function selectStudentPersonalInfo (userId) {
+    const conn = await connect();
+    return await conn.query(`SELECT user_id = ${userId};`)
+}
+
 //  Retorna lista dos testes a serem feitos pelo usuario logado
-async function selectTestsToDo(userId){
+async function selectTestsToDo (userId) {
     const conn = await connect();
     return await conn.query(`SELECT heroku_65f5ce87b15f505.Quiz.id
     FROM(
@@ -23,7 +35,7 @@ async function selectTestsToDo(userId){
 }
 
 //  Retorna lista dos testes feitos pelo usuario logado
-async function selectTestsDone(userId){
+async function selectTestsDone (userId) {
     const conn = await connect();
     return await conn.query(`SELECT heroku_65f5ce87b15f505.Quiz.id
     FROM(
@@ -44,23 +56,17 @@ async function selectTestsDone(userId){
         WHERE heroku_65f5ce87b15f505.Question.idQuiz = heroku_65f5ce87b15f505.Quiz.id);`)
 }
 
-//  Retorna informações sobre um teste especifico feito pelo usuario logado
-/*async function selectTestDoneInfo(userId, testId){
-    const conn = await connect();
-    return await conn.query(`SELECT user_id = ${userId} AND test_id = ${testId};`)
-}*/
-
 //  Responde uma questão especifica de uma prova
 async function answerQuestion (userId, questionId, answer) {
     const conn = await connect();
 
     //  Verifica se questão já foi respondida 
     const answered = await conn.query(`INSERT user_id = ${userId};`);
-    if(!answered){
+    if (!answered) {
         //  Responde a questão
         await conn.query(`INSERT user_id = ${userId};`)
     }
     return;
 }
 
-module.exports = {selectTestsToDo, selectTestsDone, answerQuestion};
+module.exports = { authenticateStudent, selectStudentPersonalInfo, selectTestsToDo, selectTestsDone, answerQuestion };

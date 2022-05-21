@@ -4,6 +4,26 @@ const db = require('../mysql/students')
 
 let router = express.Router();
 
+//  Authenticate student
+router
+    .route("/auth/:email/:password")
+    .get((req, res) => {
+        const { email, password } = req.params;
+        const userId = db.authenticateStudent(email, password);
+        req.session.authenticated = true;
+        req.session.user = {
+            id: userId
+        };
+    });
+
+// Get the student's personal information
+router
+    .route("/personal/")
+    .get((req, res) => {
+        const userId = req.session.user.id;
+        db.selectStudentPersonalInfo(userId);
+    });
+
 // Get student tests to do
 router
     .route("/tests/todo/")

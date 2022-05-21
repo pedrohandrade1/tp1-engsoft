@@ -4,14 +4,25 @@ const db = require('../mysql/teachers')
 
 let router = express.Router();
 
-//  Get test statistics
-/*router
-    .route("tests/:testId/")
+//  Authenticate teacher
+router
+    .route("/auth/:email/:password")
+    .get((req, res) => {
+        const { email, password } = req.params;
+        const userId = db.authenticateTeacher(email, password);
+        req.session.authenticated = true;
+        req.session.user = {
+            id: userId
+        };
+    });
+
+// Get the teacher's personal information
+router
+    .route("/personal/")
     .get((req, res) => {
         const userId = req.session.user.id;
-        const testId = req.params.testId;
-        db.selectTestStats(userId, testId);
-    })*/
+        db.selectTeacherPersonalInfo(userId);
+    });
 
 //  Create new test
 router

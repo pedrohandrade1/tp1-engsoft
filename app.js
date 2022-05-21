@@ -12,12 +12,10 @@ app.use(session({
 const students = require('./routes/students');
 const teachers = require('./routes/teachers');
 const tests = require('./routes/tests');
-const users = require('./routes/users');
 
 app.use("/students", students);
 app.use("/teachers", teachers);
 app.use("/tests", tests);
-app.use("/users", users);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')

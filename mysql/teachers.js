@@ -6,6 +6,18 @@ const connect = require("./connection");
     return await conn.query(`SELECT user_id = ${userId} AND test_id = ${testId};`)
 }*/
 
+//  Autentifica professor
+async function authenticateTeacher (email, password) {
+    const conn = await connect();
+    return await conn.query(`SELECT email = ${email} AND password = ${password};`) // Obs: retorna user_id
+}
+
+//  Retorna as informações pessoais do professor logado
+async function selectTeacherPersonalInfo (userId) {
+    const conn = await connect();
+    return await conn.query(`SELECT user_id = ${userId};`)
+}
+
 //  Cria uma nova prova
 async function insertTest (userId, classId, testInfo) {
     const conn = await connect();
@@ -37,4 +49,4 @@ async function insertQuestion (testId, questionInfo) {
     VALUES (${testId},${header}, ${a}, ${b}, ${c}, ${d}, ${e}, ${answer});`)
 }
 
-module.exports = { insertTest };
+module.exports = { authenticateTeacher, selectTeacherPersonalInfo, insertTest };
