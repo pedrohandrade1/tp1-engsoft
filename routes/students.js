@@ -1,19 +1,31 @@
 "use strict"
 const express = require('express');
-const db = require('../mysql/students')
+const db = require('../mysql/students');
+const utils = require('../mysql/utils');
 
 let router = express.Router();
 
 //  Authenticate student
+//  http://localhost:5500/students/auth/gabriel.sales@dcc.ufmg.br/01234567/
 router
     .route("/auth/:email/:password")
     .get((req, res) => {
         const { email, password } = req.params;
-        const userId = db.authenticateStudent(email, password);
-        req.session.authenticated = true;
-        req.session.user = {
-            id: userId
-        };
+        db.authenticateStudent(email, password).then(
+            (reponse) => {
+                const userId = utils.getUniqueResponseAttribute(reponse, 'id');
+                req.session.authenticated = true;
+                req.session.user = {
+                    id: userId
+                };
+                console.log(`Aluno com id = ${userId} foi autentificado com sucesso!`)
+                res.send(userId.toString());
+                return;
+            },
+            (error) => {
+                console.error(error);
+            }
+        )
     });
 
 // Get the student's personal information

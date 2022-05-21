@@ -11,7 +11,7 @@ async function authenticateTeacher (email, password) {
     const conn = await connect();
     return await conn.query(`SELECT DISTINCT heroku_65f5ce87b15f505.educator.id
     FROM heroku_65f5ce87b15f505.educator 
-    WHERE heroku_65f5ce87b15f505.educator.email = ${email} AND heroku_65f5ce87b15f505.educator.password = ${password};`) // Obs: retorna user_id
+    WHERE heroku_65f5ce87b15f505.educator.email = "${email}" AND heroku_65f5ce87b15f505.educator.password = "${password}";`) // Obs: retorna user_id
 }
 
 //  Retorna as informações pessoais do professor logado
