@@ -1,7 +1,7 @@
 "use strict"
 const express = require('express');
 const db = require('../mysql/students');
-const utils = require('../mysql/utils');
+const utils = require('../utils');
 
 let router = express.Router();
 
@@ -18,7 +18,7 @@ router
                 req.session.user = {
                     id: userId
                 };
-                console.log(`Aluno com id = ${userId} foi autentificado com sucesso!`)
+                console.log(`Aluno com id = ${userId} foi autentificado com sucesso!`);
                 res.send(userId.toString());
                 return;
             },
@@ -28,12 +28,25 @@ router
         )
     });
 
-// Get the student's personal information
+//  Get the student's personal information
+//  http://localhost:5500/students/personal/
 router
     .route("/personal/")
     .get((req, res) => {
+        if (!utils.checkAuth(req)) {
+            return;
+        }
+
         const userId = req.session.user.id;
-        db.selectStudentPersonalInfo(userId);
+        db.selectStudentPersonalInfo(userId).then(
+            (response) => {
+                const object = utils.getUniqueResponse(response);
+                res.send(JSON.stringify(object));
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
     });
 
 // Get student tests to do
