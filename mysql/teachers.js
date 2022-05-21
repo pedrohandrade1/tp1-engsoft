@@ -62,4 +62,4 @@ async function  selectTestsCreated(userId) {
     WHERE idEducator = ${userId};`)
 }
 
-module.exports = { authenticateTeacher, selectTeacherPersonalInfo, insertTest, selectTestsCreated, selectTestInfo };
+module.exports = { authenticateTeacher, selectTeacherPersonalInfo, insertTest, selectTestsCreated };
