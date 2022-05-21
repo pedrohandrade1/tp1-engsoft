@@ -50,4 +50,17 @@ async function selectTestsDone(userId){
     return await conn.query(`SELECT user_id = ${userId} AND test_id = ${testId};`)
 }*/
 
-module.exports = {selectTestsToDo, selectTestsDone};
+//  Responde uma questão especifica de uma prova
+async function answerQuestion (userId, questionId, answer) {
+    const conn = await connect();
+
+    //  Verifica se questão já foi respondida 
+    const answered = await conn.query(`INSERT user_id = ${userId};`);
+    if(!answered){
+        //  Responde a questão
+        await conn.query(`INSERT user_id = ${userId};`)
+    }
+    return;
+}
+
+module.exports = {selectTestsToDo, selectTestsDone, answerQuestion};

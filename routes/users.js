@@ -24,12 +24,5 @@ router
         db.selectPersonalInfo(userId);
     });
 
-router
-    .route("/answer/:questionId/:answer")
-    .post((req, res) => {
-        const { questionId, answer } = req.params;
-        const userId = req.session.user.id;
-        db.answerQuestion(userId, questionId, answer);
-    });
 
 module.exports = router;

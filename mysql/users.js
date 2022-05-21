@@ -9,13 +9,7 @@ async function authenticateUser (email, password) {
 //  Retorna as informações pessoais do usuario logado
 async function selectPersonalInfo (userId) {
     const conn = await connect();
-    return await conn.query(`SELECT user_id = ${userId};`) 
+    return await conn.query(`SELECT user_id = ${userId};`)
 }
 
-//  Responde uma questão especifica de uma prova
-async function answerQuestion (userId, questionId, answer) {
-    const conn = await connect();
-    return await conn.query(`INSERT user_id = ${userId};`) 
-}
-
-module.exports = { authenticateUser, selectPersonalInfo, answerQuestion};
+module.exports = { authenticateUser, selectPersonalInfo };

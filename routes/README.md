@@ -10,6 +10,11 @@ Retorna a lista dos testes **feitos** pelo usuario logado:
 
 **GET** ``` http://localhost:5500/students/tests/done/ ```
 
+---
+
+Responde uma questão especifica de uma prova:
+
+**POST** ```http://localhost:5500/students/answer/:questionId/:answer```
 
 # Professores
 
@@ -32,9 +37,3 @@ Autentifica o usuario e cria sessão no back-end (passo necessário para que as 
 Retorna as informações pessoais do usuario logado:
 
 **GET** ```http://localhost:5500/users/personal/```
-
----
-
-Responde uma questão especifica de uma prova:
-
-**POST** ```http://localhost:5500/users/answer/:questionId/:answer```
