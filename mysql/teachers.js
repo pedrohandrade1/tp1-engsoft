@@ -57,7 +57,9 @@ async function insertQuestion (testId, questionInfo) {
 //  Retorna as provas criadas pelo professor logado
 async function  selectTestsCreated(userId) {
     const conn = await connect();
-    return await conn.query(`SELECT ${userId}`)
+    return await conn.query(`SELECT id 
+    FROM heroku_65f5ce87b15f505.quiz
+    WHERE idEducator = ${userId};`)
 }
 
 //  Retorna as questões de uma prova
