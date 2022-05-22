@@ -1,16 +1,27 @@
 "use strict"
 const express = require('express');
 const db = require('../mysql/tests')
+const utils = require('../utils');
 
 let router = express.Router();
 
-// Get test data
+//  Get test data
+//  http://localhost:5500/tests/1/
 router
     .route("/:testId/")
     .get((req, res) => {
-        const userId = req.session.user.id;
         const testId = req.params.testId;
-        db.selectTestInfo(userId, testId);
+        db.selectTestInfo(testId).then(
+            (response) => {
+                const object = utils.getResponse(response);
+                console.log(object)
+                res.send(JSON.stringify(object));
+            },
+            (error) => {
+                console.error(error);
+                return;
+            }
+        );
     })
 
 module.exports = router;
