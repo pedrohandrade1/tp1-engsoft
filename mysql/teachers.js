@@ -11,7 +11,7 @@ async function authenticateTeacher (email, password) {
     const conn = await connect();
     return await conn.query(`SELECT DISTINCT heroku_65f5ce87b15f505.educator.id
     FROM heroku_65f5ce87b15f505.educator 
-    WHERE heroku_65f5ce87b15f505.educator.email = ${email} AND heroku_65f5ce87b15f505.educator.password = ${password};`) // Obs: retorna user_id
+    WHERE heroku_65f5ce87b15f505.educator.email = "${email}" AND heroku_65f5ce87b15f505.educator.password = "${password}";`) // Obs: retorna user_id
 }
 
 //  Retorna as informações pessoais do professor logado
@@ -42,6 +42,7 @@ async function insertTest (userId, classId, testInfo) {
     return;
 }
 
+//  Cria uma questão nova
 async function insertQuestion (testId, questionInfo) {
     const conn = await connect();
     const { header, options, answer } = questionInfo;
@@ -53,4 +54,12 @@ async function insertQuestion (testId, questionInfo) {
     VALUES (${testId},${header}, ${a}, ${b}, ${c}, ${d}, ${e}, ${answer});`)
 }
 
-module.exports = { authenticateTeacher, selectTeacherPersonalInfo, insertTest };
+//  Retorna as provas criadas pelo professor logado
+async function  selectTestsCreated(userId) {
+    const conn = await connect();
+    return await conn.query(`SELECT id 
+    FROM heroku_65f5ce87b15f505.quiz
+    WHERE idEducator = ${userId};`)
+}
+
+module.exports = { authenticateTeacher, selectTeacherPersonalInfo, insertTest, selectTestsCreated };

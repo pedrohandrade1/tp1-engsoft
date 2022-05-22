@@ -1,15 +1,15 @@
 ENDPOINT = "http://localhost:5500" // TEMPORARY
 
-function authenticate(email, password){
+function authenticate(email, password, type){
     const xmlHttp = new XMLHttpRequest();
-    let url = ENDPOINT + "/:" + email + "/:" + password
+    let url = ENDPOINT + "/" + type + "/auth/" + email + "/" + password + "/"
     
     xmlHttp.open( "GET", url, false); // false for synchronous request
     xmlHttp.send( null );
-    return xmlHttp.responseText;
+    return xmlHttp;
 }
 
-function sign_in(){
+function sign_in(type){
     console.log("lets sign_in")
     let email = document.getElementById("username").value;
     let password = document.getElementById("password").value;
@@ -25,7 +25,13 @@ function sign_in(){
     }
 
     else {
-        authenticate(email, password)
+        ans = authenticate(email, password, type)
+        if (ans.status == 200){
+            localStorage.setItem('token', JSON.stringify(ans.responseText))
+            new_url = window.location.href.split('/')
+            new_url = new_url.slice(0, new_url.length - 2).join('/')
+            window.location = new_url + '/home/' + type + '.html' 
+        }
     }
 
 

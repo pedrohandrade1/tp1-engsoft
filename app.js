@@ -1,7 +1,12 @@
+const path = require("path");
+
+const cors = require('cors');
+
 const express = require('express');
 const session = require('express-session');
 
 const app = express();
+app.use(cors());
 
 app.use(session({
   secret: 'secret-key',
@@ -17,9 +22,16 @@ app.use("/students", students);
 app.use("/teachers", teachers);
 app.use("/tests", tests);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+//  Defines static paths
+app.use("/assets", express.static(path.resolve(__dirname, "./frontend/assets")));
+app.use("/css", express.static(path.resolve(__dirname, "./frontend/css")));
+app.use("/js", express.static(path.resolve(__dirname, "./frontend/js")));
+//app.use("/html", express.static(path.resolve(__dirname, "./frontend/html")));
+
+app.get("/login/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./frontend/html/login.html"));
 });
+
 
 const DOMAIN = "localhost";
 const PORT = process.env.port || 5500;
@@ -28,5 +40,5 @@ app.listen(PORT, (error) => {
   if (error) {
     return console.error("Error: ", error);
   }
-  console.log(`Server running... at  http://${DOMAIN}:${PORT}/`)
+  console.log(`Server running... at  http://${DOMAIN}:${PORT}/login/`)
 });
