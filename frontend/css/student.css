@@ -21,3 +21,27 @@ img {
     /* background-color: #E6E6E6; */
     margin-right: 20px;
 }
+
+.split {
+    margin-top: 50px;
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .left {
+    padding-left: 2%;
+    left: 0;
+    background-color: #E6E6E6;
+  }
+  
+  .right {
+    padding-left: 2%;
+    right: 0;
+    background-color: #E6E6E6;
+  }
+
