@@ -19,45 +19,53 @@ async function selectStudentPersonalInfo (userId) {
 //  Retorna lista dos testes a serem feitos pelo usuario logado
 async function selectTestsToDo (userId) {
     const conn = await connect();
-    return await conn.query(`SELECT heroku_65f5ce87b15f505.Quiz.id, heroku_65f5ce87b15f505.Quiz.idEducator 
-    FROM(
-        SELECT heroku_65f5ce87b15f505.Registration.idClassroom 
-        FROM heroku_65f5ce87b15f505.Registration
-        WHERE idStudent = ${userId}) AS A
-    INNER JOIN heroku_65f5ce87b15f505.Quiz
-    ON A.idClassroom = heroku_65f5ce87b15f505.Quiz.idClassroom
-    WHERE (
-        SELECT count(*)
-        FROM heroku_65f5ce87b15f505.Answer
-        WHERE heroku_65f5ce87b15f505.Answer.idQuiz = heroku_65f5ce87b15f505.Quiz.id
-        AND heroku_65f5ce87b15f505.Answer.idStudent = ${userId})
-        <
-        (
-        SELECT count(*)
-        FROM heroku_65f5ce87b15f505.Question
-        WHERE heroku_65f5ce87b15f505.Question.idQuiz = heroku_65f5ce87b15f505.Quiz.id);`)
+    return await conn.query(`SELECT B.id, heroku_65f5ce87b15f505.educator.firstName, heroku_65f5ce87b15f505.educator.lastName
+    FROM ( 
+        SELECT heroku_65f5ce87b15f505.Quiz.id, heroku_65f5ce87b15f505.Quiz.idEducator 
+            FROM(
+                SELECT heroku_65f5ce87b15f505.Registration.idClassroom 
+                FROM heroku_65f5ce87b15f505.Registration
+                WHERE idStudent = ${userId}) AS A
+            INNER JOIN heroku_65f5ce87b15f505.Quiz
+            ON A.idClassroom = heroku_65f5ce87b15f505.Quiz.idClassroom
+            WHERE (
+                SELECT count(*)
+                FROM heroku_65f5ce87b15f505.Answer
+                WHERE heroku_65f5ce87b15f505.Answer.idQuiz = heroku_65f5ce87b15f505.Quiz.id
+                AND heroku_65f5ce87b15f505.Answer.idStudent = ${userId})
+                <
+                (
+                SELECT count(*)
+                FROM heroku_65f5ce87b15f505.Question
+                WHERE heroku_65f5ce87b15f505.Question.idQuiz = heroku_65f5ce87b15f505.Quiz.id)) AS B
+    INNER JOIN heroku_65f5ce87b15f505.educator
+    ON B.idEducator = heroku_65f5ce87b15f505.educator.id;`)
 }
 
 //  Retorna lista dos testes feitos pelo usuario logado
 async function selectTestsDone (userId) {
     const conn = await connect();
-    return await conn.query(`SELECT heroku_65f5ce87b15f505.Quiz.id, heroku_65f5ce87b15f505.Quiz.idEducator 
-    FROM(
-        SELECT heroku_65f5ce87b15f505.Registration.idClassroom 
-        FROM heroku_65f5ce87b15f505.Registration
-        WHERE idStudent = ${userId}) AS A
-    INNER JOIN heroku_65f5ce87b15f505.Quiz
-    ON A.idClassroom = heroku_65f5ce87b15f505.Quiz.idClassroom
-    WHERE (
-        SELECT count(*)
-        FROM heroku_65f5ce87b15f505.Answer
-        WHERE heroku_65f5ce87b15f505.Answer.idQuiz = heroku_65f5ce87b15f505.Quiz.id
-        AND heroku_65f5ce87b15f505.Answer.idStudent = ${userId})
-        =
-        (
-        SELECT count(*)
-        FROM heroku_65f5ce87b15f505.Question
-        WHERE heroku_65f5ce87b15f505.Question.idQuiz = heroku_65f5ce87b15f505.Quiz.id);`)
+    return await conn.query(`SELECT B.id, heroku_65f5ce87b15f505.educator.firstName, heroku_65f5ce87b15f505.educator.lastName
+    FROM ( 
+        SELECT heroku_65f5ce87b15f505.Quiz.id, heroku_65f5ce87b15f505.Quiz.idEducator 
+            FROM(
+                SELECT heroku_65f5ce87b15f505.Registration.idClassroom 
+                FROM heroku_65f5ce87b15f505.Registration
+                WHERE idStudent = ${userId}) AS A
+            INNER JOIN heroku_65f5ce87b15f505.Quiz
+            ON A.idClassroom = heroku_65f5ce87b15f505.Quiz.idClassroom
+            WHERE (
+                SELECT count(*)
+                FROM heroku_65f5ce87b15f505.Answer
+                WHERE heroku_65f5ce87b15f505.Answer.idQuiz = heroku_65f5ce87b15f505.Quiz.id
+                AND heroku_65f5ce87b15f505.Answer.idStudent = ${userId})
+                =
+                (
+                SELECT count(*)
+                FROM heroku_65f5ce87b15f505.Question
+                WHERE heroku_65f5ce87b15f505.Question.idQuiz = heroku_65f5ce87b15f505.Quiz.id)) AS B
+    INNER JOIN heroku_65f5ce87b15f505.educator
+    ON B.idEducator = heroku_65f5ce87b15f505.educator.id;`)
 }
 
 //  Responde uma questão especifica de uma prova
