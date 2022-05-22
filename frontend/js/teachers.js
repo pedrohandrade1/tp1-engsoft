@@ -17,10 +17,6 @@ function init() {
     document.getElementById('fileContent').textContent = event.target.result;
   }
 
-  function showTest(){
-
-  }
-
   function getHtmlTestCard(testId){
     const html = `<div class="col-sm-3">
                     <div class="card bg-light mb-3">
