@@ -1,8 +1,25 @@
-ENDPOINT = "http://localhost:5500" // TEMPORARY
+ENDPOINT = "http://localhost:5500/" // TEMPORARY
+
+
+function redirect_to_page(type){
+    new_url = window.location.href.split('/')
+    new_url = new_url.slice(0, new_url.length - 2).join('/')
+    window.location = new_url + '/home/' + type + '.html' 
+}
+
+function req_student_info(){
+    const xmlHttp = new XMLHttpRequest();
+    let url = ENDPOINT + "students/personal/"
+    console.log('tentando acessar ' + url)
+
+    xmlHttp.open( "GET", url, false); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp;
+}
 
 function authenticate(email, password, type){
     const xmlHttp = new XMLHttpRequest();
-    let url = ENDPOINT + "/" + type + "/auth/" + email + "/" + password + "/"
+    let url = ENDPOINT + type + "/auth/" + email + "/" + password + "/"
     
     xmlHttp.open( "GET", url, false); // false for synchronous request
     xmlHttp.send( null );
@@ -27,12 +44,8 @@ function sign_in(type){
     else {
         ans = authenticate(email, password, type)
         if (ans.status == 200){
-            localStorage.setItem('token', JSON.stringify(ans.responseText))
-            new_url = window.location.href.split('/')
-            new_url = new_url.slice(0, new_url.length - 2).join('/')
-            window.location = new_url + '/home/' + type + '.html' 
+            localStorage.setItem('token', JSON.stringify(ans.responseText))        
+            redirect_to_page(type)
         }
     }
-
-
 }
