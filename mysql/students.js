@@ -19,7 +19,7 @@ async function selectStudentPersonalInfo (userId) {
 //  Retorna lista dos testes a serem feitos pelo usuario logado
 async function selectTestsToDo (userId) {
     const conn = await connect();
-    return await conn.query(`SELECT heroku_65f5ce87b15f505.Quiz.id
+    return await conn.query(`SELECT heroku_65f5ce87b15f505.Quiz.id, heroku_65f5ce87b15f505.Quiz.idEducator 
     FROM(
         SELECT heroku_65f5ce87b15f505.Registration.idClassroom 
         FROM heroku_65f5ce87b15f505.Registration
@@ -41,7 +41,7 @@ async function selectTestsToDo (userId) {
 //  Retorna lista dos testes feitos pelo usuario logado
 async function selectTestsDone (userId) {
     const conn = await connect();
-    return await conn.query(`SELECT heroku_65f5ce87b15f505.Quiz.id
+    return await conn.query(`SELECT heroku_65f5ce87b15f505.Quiz.id, heroku_65f5ce87b15f505.Quiz.idEducator 
     FROM(
         SELECT heroku_65f5ce87b15f505.Registration.idClassroom 
         FROM heroku_65f5ce87b15f505.Registration
