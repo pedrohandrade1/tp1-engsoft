@@ -44,6 +44,10 @@ app.get("/home/teachers/*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./frontend/html/home/teachers.html"));
 });
 
+app.get("/test/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./frontend/html/solve_test.html"));
+});
+
 const DOMAIN = "localhost";
 const PORT = process.env.port || 5500;
 

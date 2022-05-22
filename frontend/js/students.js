@@ -1,6 +1,5 @@
 ENDPOINT = 'http://localhost:5500/';
 
-
 function getTestsIdArray (xmlHttp) {
     const response = xmlHttp.response;
     return JSON.parse(response);
@@ -39,10 +38,7 @@ function init () {
 }
 
 function go_to_test (test_id) {
-    new_url = window.location.href.split('/')
-    new_url = new_url.slice(0, new_url.length - 2).join('/')
-    console.log(new_url + '/solve_test.html/' + test_id)
-    window.location = new_url + '/solve_test.html?test_id=' + test_id
+    window.location = ENDPOINT + 'test/' + test_id
 }
 
 function get_html_done_test_cards (test_id) {
