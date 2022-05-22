@@ -82,7 +82,7 @@ async function answerQuestion (userId, questionId, quizId, answer) {
         await conn.query(`INSERT INTO heroku_65f5ce87b15f505.answer (idQuiz, idStudent, idQuestion, answerSelected)
         VALUES (${quizId}, ${userId}, ${questionId}, ${answer});`);
     }
-    return;
+    return 1;
 }
 
 module.exports = { authenticateStudent, selectStudentPersonalInfo, selectTestsToDo, selectTestsDone, answerQuestion };

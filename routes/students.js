@@ -102,11 +102,16 @@ router
     })
 
 router
-    .route("/answer/:questionId/:answer")
+    .route("/answer/:testId/:questionId/:answer")
     .post((req, res) => {
-        const { questionId, answer } = req.params;
+        if (!utils.checkAuth(req)) {
+            return;
+        }
+
+        const { testId, questionId, answer } = req.params;
         const userId = req.session.user.id;
-        db.answerQuestion(userId, questionId, answer);
+        db.answerQuestion(userId, questionId, testId, answer);
+        return;
     });
 
 module.exports = router;
