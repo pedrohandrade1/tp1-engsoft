@@ -1,0 +1,23 @@
+body {
+    font-family: "Source Sans Pro";
+    background-color: #E6E6E6;
+}
+
+
+.btn {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    background-color: #E6E6E6;
+}
+
+img {
+    max-width:32px;
+    max-height:32px;
+    width:auto;
+    height:auto;
+}
+
+.card{
+    /* background-color: #E6E6E6; */
+    margin-right: 20px;
+}
