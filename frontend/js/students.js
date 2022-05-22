@@ -4,11 +4,11 @@ ENDPOINT = 'http://localhost:5500/';
 function getTestsIdArray (xmlHttp) {
     const response = xmlHttp.response;
     return JSON.parse(response);
-  }
+}
 
 function req_done_tests () {
     const xmlHttp = new XMLHttpRequest();
-    let url = ENDPOINT + "students/tests/done/"
+    let url = ENDPOINT + "students/tests/done/";
 
     xmlHttp.open("GET", url, false); // false for synchronous request
     xmlHttp.send(null);
@@ -17,7 +17,7 @@ function req_done_tests () {
 
 function req_to_do_tests () {
     const xmlHttp = new XMLHttpRequest();
-    let url = ENDPOINT + "students/tests/todo/"
+    let url = ENDPOINT + "students/tests/todo/";
 
     xmlHttp.open("GET", url, false); // false for synchronous request
     xmlHttp.send(null);

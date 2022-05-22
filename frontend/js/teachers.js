@@ -32,8 +32,9 @@ function handleFileSelect (event) {
 function handleFileLoad (event) {
   console.log(event);
   const testObject = getTestObject(event.target.result);
+  const testHTML = getTestHTML(testObject);
   console.log(testObject);
-  document.getElementById('fileContent').textContent = event.target.result;
+  document.getElementById('fileContent').innerHTML = testHTML;
 }
 
 function getTestObject (string) {
