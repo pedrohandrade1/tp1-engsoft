@@ -28,10 +28,21 @@ app.use("/css", express.static(path.resolve(__dirname, "./frontend/css")));
 app.use("/js", express.static(path.resolve(__dirname, "./frontend/js")));
 //app.use("/html", express.static(path.resolve(__dirname, "./frontend/html")));
 
-app.get("/login/student/*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./frontend/html/login/student.html"));
+app.get("/login/students/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./frontend/html/login/students.html"));
 });
 
+app.get("/home/students/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./frontend/html/home/students.html"));
+});
+
+app.get("/login/teachers/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./frontend/html/login/teachers.html"));
+});
+
+app.get("/home/teachers/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./frontend/html/home/teachers.html"));
+});
 
 const DOMAIN = "localhost";
 const PORT = process.env.port || 5500;
@@ -40,5 +51,5 @@ app.listen(PORT, (error) => {
   if (error) {
     return console.error("Error: ", error);
   }
-  console.log(`Server running... at  http://${DOMAIN}:${PORT}/login/student/`)
+  console.log(`Server running... at  http://${DOMAIN}:${PORT}/login/students/`)
 });

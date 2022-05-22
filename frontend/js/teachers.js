@@ -1,28 +1,45 @@
 ENDPOINT = "http://localhost:5500/"
 
-function init() {
-    document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
-    const testIdArray = reqCreatedTests()
-    addTestCards(testIdArray)
-  }
-  
-  function handleFileSelect(event) {
-    const reader = new FileReader()
-    reader.onload = handleFileLoad;
-    reader.readAsText(event.target.files[0])
-  }
-  
-  function handleFileLoad(event) {
-    console.log(event);
-    document.getElementById('fileContent').textContent = event.target.result;
-  }
+function getTestsCreatedList () {
+  const xmlHttp = new XMLHttpRequest();
+  let url = ENDPOINT + "teachers/tests/created/"
 
-  function showTest(){
+  xmlHttp.open("GET", url, false); // false for synchronous request
+  xmlHttp.send(null);
+  return xmlHttp;
+}
 
-  }
+function getTestsIdArray (xmlHttp) {
+  const response = xmlHttp.response;
+  return JSON.parse(response);
+}
 
-  function getHtmlTestCard(testId){
-    const html = `<div class="col-sm-3">
+function init () {
+  const xmlHttp = getTestsCreatedList();
+  const testIdArray = getTestsIdArray(xmlHttp);
+  console.log(testIdArray);
+  addTestCards(testIdArray)
+
+  document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
+}
+
+function handleFileSelect (event) {
+  const reader = new FileReader()
+  reader.onload = handleFileLoad;
+  reader.readAsText(event.target.files[0])
+}
+
+function handleFileLoad (event) {
+  console.log(event);
+  document.getElementById('fileContent').textContent = event.target.result;
+}
+
+function showTest () {
+
+}
+
+function getHtmlTestCard (testId) {
+  const html = `<div class="col-sm-3">
                     <div class="card bg-light mb-3">
                         <h5 class="card-header">Prova ${testId}</h5>
                         <div class="card-body">
@@ -31,25 +48,18 @@ function init() {
                             </div>
                         </div>
                     </div>
-                  </div>`
-    return html;
+                  </div>`;
+  return html;
+}
+
+function addTestCards (testIdArray) {
+  let html = "";
+  for (let i = 0; i < testIdArray.length; i++) {
+    const row = testIdArray[i];
+    const testId = row.id;
+    html += getHtmlTestCard(testId);
   }
-
-  function addTestCards(testIdArray){
-    let html = "";
-    for(let i = 0; i < testdIdArray.lenght; i++){
-      const testId = testdIdArray[i].id;
-      html+= getHtmlTestCard(testId);
-    }
-    const node = document.getElementById("tests-created");
-    node.innerHTML = html;
-    } 
-
-  function reqCreatedTests(){
-    const xmlHttp = new XMLHttpRequest();
-    let url = ENDPOINT + "teachers/tests/created/"
-
-    xmlHttp.open( "GET", url, false); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp;
-  }
+  console.log(html)
+  const node = document.getElementById("tests-created");
+  node.innerHTML = html;
+}
