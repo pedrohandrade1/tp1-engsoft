@@ -12,8 +12,14 @@ router
     .get((req, res) => {
         const { email, password } = req.params;
         db.authenticateStudent(email, password).then(
-            (reponse) => {
-                const userId = utils.getUniqueResponseAttribute(reponse, 'id');
+            (response) => {
+                if (utils.emptyResponse(response)) {
+                    console.warn(`Sem alunos com essas credenciais!`);
+                    res.status(403);
+                    res.send(`Sem alunos com essas credenciais!`);
+                    return;
+                }
+                const userId = utils.getUniqueResponseAttribute(response, 'id');
                 req.session.authenticated = true;
                 req.session.user = {
                     id: userId
@@ -24,6 +30,7 @@ router
             },
             (error) => {
                 console.error(error);
+                return;
             }
         )
     });
@@ -45,33 +52,54 @@ router
             },
             (error) => {
                 console.error(error);
+                return;
             }
         );
     });
 
-// Get student tests to do
+//  Get student tests to do
+//  http://localhost:5500/students/tests/todo/
 router
     .route("/tests/todo/")
     .get((req, res) => {
+        if (!utils.checkAuth(req)) {
+            return;
+        }
+
         const userId = req.session.user.id;
-        db.selectTestsToDo(userId);
+        db.selectTestsToDo(userId).then(
+            (response) => {
+                const object = utils.getResponse(response);
+                res.send(JSON.stringify(object));
+            },
+            (error) => {
+                console.error(error);
+                return;
+            }
+        );
     })
 
-// Get student tests done list
+//  Get student tests done list
+//  http://localhost:5500/students/tests/done/
 router
     .route("/tests/done/")
     .get((req, res) => {
-        const userId = req.session.user.id;
-        db.selectTestsDone(userId);
-    })
+        if (!utils.checkAuth(req)) {
+            return;
+        }
 
-// Get student test done data
-/*router
-    .route("/tests/:testId/")
-    .get((req, res) => {
         const userId = req.session.user.id;
-        db.selectTestDoneInfo(userId);
-    })*/
+        db.selectTestsDone(userId).then(
+            (response) => {
+                const object = utils.getResponse(response);
+                res.send(JSON.stringify(object));
+            },
+            (error) => {
+                console.error(error);
+                return;
+            }
+        );
+    })
 
 router
     .route("/answer/:questionId/:answer")

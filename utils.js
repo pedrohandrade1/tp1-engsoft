@@ -1,3 +1,7 @@
+function emptyResponse (response) {
+    return response[0].length == 0;
+}
+
 function getResponse (response) {
     return response[0];
 }
@@ -14,9 +18,10 @@ function checkAuth (req) {
     if (req.session.user == undefined) {
         console.warn("Necessario autentificar usuario antes!");
         return false;
-    }else{
+    } else {
         console.log(`Requisição feito para usuario de id = ${req.session.user.id}`);
         return true;
-    }}
+    }
+}
 
-module.exports = { getResponse, getUniqueResponse, getUniqueResponseAttribute, checkAuth }
+module.exports = { emptyResponse, getResponse, getUniqueResponse, getUniqueResponseAttribute, checkAuth }

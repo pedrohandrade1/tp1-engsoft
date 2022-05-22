@@ -28,8 +28,8 @@ app.use("/css", express.static(path.resolve(__dirname, "./frontend/css")));
 app.use("/js", express.static(path.resolve(__dirname, "./frontend/js")));
 //app.use("/html", express.static(path.resolve(__dirname, "./frontend/html")));
 
-app.get("/login/*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./frontend/html/login.html"));
+app.get("/login/student/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./frontend/html/login/student.html"));
 });
 
 
@@ -40,5 +40,5 @@ app.listen(PORT, (error) => {
   if (error) {
     return console.error("Error: ", error);
   }
-  console.log(`Server running... at  http://${DOMAIN}:${PORT}/login/`)
+  console.log(`Server running... at  http://${DOMAIN}:${PORT}/login/student/`)
 });
