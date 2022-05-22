@@ -31,7 +31,30 @@ function handleFileSelect (event) {
 
 function handleFileLoad (event) {
   console.log(event);
+  const testObject = getTestObject(event.target.result);
+  console.log(testObject);
   document.getElementById('fileContent').textContent = event.target.result;
+}
+
+function getTestObject (string) {
+  const result = [];
+  const stringFormated = string.replaceAll("\r", "");
+  const lines = stringFormated.split("\n");
+
+  let counter = 0;
+  const questions = parseInt(lines[counter]);
+  for (let i = 0; i < questions; i++) {
+    const header = lines[++counter];
+    const optionsCount = parseInt(lines[++counter]);
+    const options = [];
+    for (let j = 0; j < optionsCount; j++) {
+      options.push(lines[++counter])
+    }
+    const answer = lines[++counter];
+    result.push({ header, options, answer });
+  }
+
+  return result;
 }
 
 function showTest () {
