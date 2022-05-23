@@ -82,10 +82,11 @@ router
 
 //  Create new test
 router
-    .route("tests/new/")
+    .route("/tests/new/")
     .post((req, res) => {
         const userId = req.session.user.id;
         const testInfo = req.body;
+        console.log(req.body)
         db.insertTest(userId, testInfo);
     })
 
