@@ -110,8 +110,16 @@ router
 
         const { testId, questionId, answer } = req.params;
         const userId = req.session.user.id;
-        db.answerQuestion(userId, questionId, testId, answer);
-        return;
+        db.answerQuestion(userId, questionId, testId, answer).then(
+            (response) => {
+                console.log("Questão respondida com sucesso!");
+                res.send("Questão respondida com sucesso!");
+            },
+            (error) => {
+                console.error(error);
+                return;
+            }
+        );
     });
 
 module.exports = router;

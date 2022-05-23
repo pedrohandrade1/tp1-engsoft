@@ -36,6 +36,8 @@ async function insertTest (userId, classId, testInfo) {
     const response = await conn.query(`(SELECT COUNT(*) AS count FROM heroku_65f5ce87b15f505.quiz)`);
     const testId = utils.getUniqueResponseAttribute(response, "count");
 
+    console.log(testId);
+
     //  Cria cada questão
     for (let i = 0; i < testInfo.length; i++) {
         await insertQuestion(testId, testInfo[i]);
@@ -52,6 +54,7 @@ async function insertQuestion (testId, questionInfo) {
     await conn.query(`SET @@auto_increment_increment=1;`)
     await conn.query(`SET @@auto_increment_offset=1;`)
     await conn.query(`ALTER TABLE heroku_65f5ce87b15f505.question AUTO_INCREMENT = 1;`)
+    console.log(`INSERT INTO heroku_65f5ce87b15f505.question (idQuiz, question, alternativeA, alternativeB, alternativeC, alternativeD, alternativeE, answerExpected) VALUES (${testId}, "${header}", "${a}", "${b}", "${c}", "${d}", "${e}", "${answer}");`)
     return await conn.query(`INSERT INTO heroku_65f5ce87b15f505.question (idQuiz, question, alternativeA, alternativeB, alternativeC, alternativeD, alternativeE, answerExpected) VALUES (${testId}, "${header}", "${a}", "${b}", "${c}", "${d}", "${e}", "${answer}");`);
 }
 
