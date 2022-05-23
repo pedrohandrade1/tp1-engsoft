@@ -37,6 +37,10 @@ function init () {
     add_to_do_test_cards(test_to_do_id_array);
 }
 
+function showTest(test_id){
+    window.location = ENDPOINT + 'show/' + test_id
+}
+
 function go_to_test (test_id) {
     window.location = ENDPOINT + 'test/' + test_id
 }
@@ -50,7 +54,7 @@ function get_html_done_test_cards (test_id, prof_name) {
                         </ul>
                         <div class="card-footer">
                             <div class="col-md-12 text-center">
-                                <button class="btn btn-outline-secondary mt-0">Visualizar Prova</button>
+                                <button onclick="showTest(${test_id})" class="btn btn-outline-secondary mt-0">Visualizar Prova</button>
                             </div>
                         </div>
                     </div>

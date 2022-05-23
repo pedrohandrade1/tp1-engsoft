@@ -1,3 +1,31 @@
+function requestTestInfo (test_id) {
+    const xmlHttp = new XMLHttpRequest();
+    let url = ENDPOINT + "tests/" + test_id + "/"
+
+    xmlHttp.open("GET", url, false); // false for synchronous request
+    xmlHttp.send(null);
+    return xmlHttp;
+}
+
+function getTestInfo (test_id) {
+    const request = requestTestInfo(test_id);
+    const response = request.response;
+    return JSON.parse(response);
+}
+
+function convertObject (testArray) {
+    const result = [];
+    for (let i = 0; i < testArray.length; i++) {
+        const { question, alternativeA, alternativeB, alternativeC, alternativeD, alternativeE, answerExpected } = testArray[i];
+        result.push({
+            header: question,
+            options: [alternativeA, alternativeB, alternativeC, alternativeD, alternativeE],
+            answer: answerExpected
+        })
+    }
+    return result;
+};
+
 function getTestHTML (questionArray) {
     let html = '';
     for (let i = 0; i < questionArray.length; i++) {

@@ -48,6 +48,10 @@ app.get("/test/*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./frontend/html/solve_test.html"));
 });
 
+app.get("/show/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./frontend/html/show_test.html"));
+});
+
 const DOMAIN = "localhost";
 const PORT = process.env.port || 5500;
 
@@ -55,5 +59,5 @@ app.listen(PORT, (error) => {
   if (error) {
     return console.error("Error: ", error);
   }
-  console.log(`Server running... at:\nhttp://${DOMAIN}:${PORT}/login/students/\nhttp://${DOMAIN}:${PORT}/login/teachers/`)
+  console.log(`Server running... at:\nhttp://${DOMAIN}:${PORT}/login/students/\nhttp://${DOMAIN}:${PORT}/login/teachers/\nhttp://${DOMAIN}:${PORT}/show/1/`)
 });
