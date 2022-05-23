@@ -68,15 +68,8 @@ function getTestObject (string) {
   return result;
 }
 
-function showTest (testId) {
-  const xmlHttp = new XMLHttpRequest();
-  let url = ENDPOINT + 'tests/' + testId
-  xmlHttp.open("GET", url, false); // false for synchronous request
-  xmlHttp.send(null);
-  const testHTML = getTestHTML(xmlHttp);
-  console.log(testHTML);
-  document.getElementById("visualize-test").innerHTML = testHTML
-  // window.location = url
+function showTest(test_id){
+  window.location = ENDPOINT + 'show/' + test_id
 }
 
 function getHtmlTestCard (testId) {
