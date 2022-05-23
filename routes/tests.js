@@ -14,7 +14,6 @@ router
         db.selectTestInfo(testId).then(
             (response) => {
                 const object = utils.getResponse(response);
-                console.log(object)
                 res.send(JSON.stringify(object));
             },
             (error) => {

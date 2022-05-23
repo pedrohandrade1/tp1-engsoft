@@ -90,7 +90,7 @@ router
 
         const userId = req.session.user.id;
         const testInfo = JSON.parse(req.params.testInfo);
-        console.log(testInfo);
+
         db.insertTest(userId, 1, testInfo).then(
             (response) => {
                 console.log("Prova adicionada com sucesso!");
