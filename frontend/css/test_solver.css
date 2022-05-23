@@ -13,13 +13,11 @@ body {
 img {
     max-width:32px;
     max-height:32px;
-    width:auto;
-    height:auto;
 }
 
 .card{
     /* background-color: #E6E6E6; */
-    margin-right: 20px;
+    margin: 10px 20px;
 }
 
 .split {
@@ -46,4 +44,7 @@ img {
   }
 
 
+#questions {
+  margin: 2% 5% 0% 5%;
+}
   
