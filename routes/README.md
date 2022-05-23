@@ -26,7 +26,7 @@ Retorna a lista dos testes **feitos** pelo aluno logado:
 
 Responde uma questão especifica de uma prova:
 
-**POST** ```http://localhost:5500/students/answer/:questionId/:answer```
+**POST** ```http://localhost:5500/students/answer/:testId/:questionId/:answer```
 
 # Professores
 
@@ -39,6 +39,12 @@ Autentifica o professor e cria sessão no back-end (passo necessário para que a
 Retorna as informações pessoais do professor logado:
 
 **GET** ```http://localhost:5500/teachers/personal/```
+
+---
+
+Retorna as provas criadas pelo professor logado
+
+**GET** ```http://localhost:5500/teachers/tests/created/```
 
 ---
 
