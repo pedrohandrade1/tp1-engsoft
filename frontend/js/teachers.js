@@ -1,4 +1,5 @@
 ENDPOINT = "http://localhost:5500/"
+let testObject
 
 function getTestsCreatedList () {
   const xmlHttp = new XMLHttpRequest();
@@ -7,6 +8,16 @@ function getTestsCreatedList () {
   xmlHttp.open("GET", url, false); // false for synchronous request
   xmlHttp.send(null);
   return xmlHttp;
+}
+
+function postCreatedTest (createdTest) {
+  const xmlHttp = new XMLHttpRequest();
+  let url = ENDPOINT + "teachers/tests/new/"
+
+  xmlHttp.open("POST", url, false); // false for synchronous request
+  xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  var data = JSON.stringify(createdTest);
+  xmlHttp.send(data);
 }
 
 function getTestsIdArray (xmlHttp) {
@@ -31,7 +42,7 @@ function handleFileSelect (event) {
 
 function handleFileLoad (event) {
   console.log(event);
-  const testObject = getTestObject(event.target.result);
+  testObject = getTestObject(event.target.result);
   const testHTML = getTestHTML(testObject);
   console.log(testObject);
   document.getElementById('fileContent').innerHTML = testHTML;
@@ -86,4 +97,8 @@ function addTestCards (testIdArray) {
   console.log(html)
   const node = document.getElementById("tests-created");
   node.innerHTML = html;
+}
+
+function uploadCreatedTest(){
+  postCreatedTest(testObject)
 }
