@@ -41,13 +41,12 @@ function go_to_test (test_id) {
     window.location = ENDPOINT + 'test/' + test_id
 }
 
-function get_html_done_test_cards (test_id) {
+function get_html_done_test_cards (test_id, prof_name) {
     const html = `<div class="col-sm-5">
                     <div class="card bg-light mb-3">
                         <h5 class="card-header">Prova ${test_id}</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Professor:</li>
-                            <li class="list-group-item">Número de Acertos:</li>
+                            <li class="list-group-item">Professor: ${prof_name}</li>
                         </ul>
                         <div class="card-footer">
                             <div class="col-md-12 text-center">
@@ -59,12 +58,12 @@ function get_html_done_test_cards (test_id) {
     return html;
 }
 
-function get_html_to_do_test_cards (test_id) {
+function get_html_to_do_test_cards (test_id, prof_name) {
     const html = `<div class="col-sm-5">
                     <div class="card bg-light mb-3">
                         <h5 class="card-header">Prova ${test_id}</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Professor:</li>
+                            <li class="list-group-item">Professor: ${prof_name}</li>
                         </ul>
                         <div class="card-footer">
                             <div class="col-md-12 text-center">
@@ -81,7 +80,8 @@ function add_done_test_cards (test_id_array) {
     for (let i = 0; i < test_id_array.length; i++) {
         const row = test_id_array[i];
         const test_id = row.id;
-        html += get_html_done_test_cards(test_id);
+        const prof_name = row.firstName + " " + row.lastName
+        html += get_html_done_test_cards(test_id, prof_name);
     }
     console.log(html)
     const node = document.getElementById("tests-done");
@@ -93,7 +93,8 @@ function add_to_do_test_cards (test_id_array) {
     for (let i = 0; i < test_id_array.length; i++) {
         const row = test_id_array[i];
         const test_id = row.id;
-        html += get_html_to_do_test_cards(test_id);
+        const prof_name = row.firstName + " " + row.lastName
+        html += get_html_to_do_test_cards(test_id, prof_name);
     }
     console.log(html)
     const node = document.getElementById("tests-to-do");
