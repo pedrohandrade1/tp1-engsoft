@@ -36,8 +36,7 @@ function redirect_to_page (type) {
 }
 
 function openAlert(){
-    console.log("opa")
-    document.getElementById('myalert').innerHTML = '<div class="col-lg-2 alert alert-success" ><strong>Successo!</strong> Respostas enviadas</div>'
+    document.getElementById('myalert').innerHTML = '<div id="alert" class="col-lg-2 alert alert-success" ><strong>Respostas enviadas!</strong></div>'
  }
 
 function send_test(){
@@ -53,7 +52,7 @@ function send_test(){
                 setTimeout(() => { 
                     ans = send_question(object[i].id, element)
                     console.log(ans)
-                }, 1000);
+                }, 5000);
             }
         });
     }
@@ -109,8 +108,6 @@ function render_user_info(){
     ans = JSON.parse(req_student_info())
     document.getElementById('student_name').innerHTML = ans.firstName + " " + ans.lastName
     const d = new Date();
-
-    document.getElementById('date').innerHTML = d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear()
     
     test_id = get_test_id()
     questions = JSON.parse(req_test_info(test_id)) 

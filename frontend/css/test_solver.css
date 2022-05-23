@@ -49,6 +49,10 @@ img {
   margin: 2% 5% 0% 5%;
 }
   
+#alert{
+  margin: 2% 10% 2% 10%;
+  height: 40px;
+}
 #send_btn{
   margin: 2% 10% 2% 10%;
   height: 40px;
