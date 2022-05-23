@@ -55,5 +55,5 @@ app.listen(PORT, (error) => {
   if (error) {
     return console.error("Error: ", error);
   }
-  console.log(`Server running... at  http://${DOMAIN}:${PORT}/login/students/`)
+  console.log(`Server running... at:\nhttp://${DOMAIN}:${PORT}/login/students/\nhttp://${DOMAIN}:${PORT}/login/teachers/`)
 });

@@ -12,12 +12,11 @@ function getTestsCreatedList () {
 
 function postCreatedTest (createdTest) {
   const xmlHttp = new XMLHttpRequest();
-  let url = ENDPOINT + "teachers/tests/new/"
-
-  xmlHttp.open("POST", url, false); // false for synchronous request
-  xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  let url = ENDPOINT + "teachers/tests/new/" 
   var data = JSON.stringify(createdTest);
-  xmlHttp.send(data);
+  console.log(data);
+  xmlHttp.open("POST", url + data, false); // false for synchronous request
+  xmlHttp.send(null);
 }
 
 function getTestsIdArray (xmlHttp) {

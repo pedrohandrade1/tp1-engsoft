@@ -13,7 +13,7 @@ router
         const { email, password } = req.params;
         db.authenticateTeacher(email, password).then(
             (response) => {
-                if(utils.emptyResponse(response)){
+                if (utils.emptyResponse(response)) {
                     console.warn(`Sem professores com essas credenciais!`);
                     res.status(403);
                     res.render(`Sem professores com essas credenciais!`);
@@ -82,12 +82,25 @@ router
 
 //  Create new test
 router
-    .route("/tests/new/")
+    .route("/tests/new/:testInfo")
     .post((req, res) => {
+        if (!utils.checkAuth(req)) {
+            return;
+        }
+
         const userId = req.session.user.id;
-        const testInfo = req.body;
-        console.log("body:", req.body);
-        db.insertTest(userId, 1, testInfo);
+        const testInfo = JSON.parse(req.params.testInfo);
+        console.log(testInfo);
+        db.insertTest(userId, 1, testInfo).then(
+            (response) => {
+                console.log("Prova adicionada com sucesso!");
+                res.send("Prova adicionada com sucesso!");
+            },
+            (error) => {
+                console.error(error);
+                return;
+            }
+        );
     })
 
 module.exports = router;
