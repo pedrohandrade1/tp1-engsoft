@@ -33,7 +33,7 @@ async function insertTest (userId, classId, testInfo) {
     await conn.query(`ALTER TABLE heroku_65f5ce87b15f505.quiz AUTO_INCREMENT = 1;`);
     await conn.query(`INSERT INTO heroku_65f5ce87b15f505.quiz (idClassroom, idEducator) VALUES (${classId}, ${userId});`);
 
-    const response = await conn.query(`(SELECT COUNT(*) AS count FROM heroku_65f5ce87b15f505.quiz)`);
+    const response = await conn.query(`SELECT id AS count FROM heroku_65f5ce87b15f505.quiz ORDER BY id DESC LIMIT 1;`);
     const testId = utils.getUniqueResponseAttribute(response, "count");
 
     console.log(testId);
