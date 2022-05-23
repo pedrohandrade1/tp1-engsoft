@@ -37,7 +37,7 @@ function redirect_to_page (type) {
 
 function openAlert(){
     console.log("opa")
-    document.getElementById('myalert').innerHTML = '<div class="col-lg-6 alert alert-success" ><strong>Successo!</strong> Respostas enviadas</div>'
+    document.getElementById('myalert').innerHTML = '<div class="col-lg-2 alert alert-success" ><strong>Successo!</strong> Respostas enviadas</div>'
  }
 
 function send_test(){
@@ -108,6 +108,9 @@ function add_question_card(questions) {
 function render_user_info(){
     ans = JSON.parse(req_student_info())
     document.getElementById('student_name').innerHTML = ans.firstName + " " + ans.lastName
+    const d = new Date();
+
+    document.getElementById('date').innerHTML = d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear()
     
     test_id = get_test_id()
     questions = JSON.parse(req_test_info(test_id)) 
