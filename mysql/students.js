@@ -80,7 +80,7 @@ async function answerQuestion (userId, questionId, quizId, answer) {
         await conn.query(`SET @@auto_increment_offset=1;`);
         await conn.query(`ALTER TABLE heroku_65f5ce87b15f505.answer AUTO_INCREMENT = 1;`);
         await conn.query(`INSERT INTO heroku_65f5ce87b15f505.answer (idQuiz, idStudent, idQuestion, answerSelected)
-        VALUES (${quizId}, ${userId}, ${questionId}, ${answer});`);
+        VALUES (${quizId}, ${userId}, ${questionId}, "${answer}");`);
     }
     return 1;
 }

@@ -30,8 +30,7 @@ async function insertTest (userId, classId, testInfo) {
     await conn.query(`SET @@auto_increment_increment=1;`)
     await conn.query(`SET @@auto_increment_offset=1;`)
     await conn.query(`ALTER TABLE heroku_65f5ce87b15f505.quiz AUTO_INCREMENT = 1;`)
-    await conn.query(`INSERT INTO heroku_65f5ce87b15f505.quiz (idClassroom, idEducator)
-    VALUES (${classId}, ${userId});`)
+    await conn.query(`INSERT INTO heroku_65f5ce87b15f505.quiz (idClassroom, idEducator) VALUES (${classId}, ${userId});`)
     const testId = conn.query(`(SELECT COUNT(*) FROM heroku_65f5ce87b15f505.quiz)`)
 
     //  Cria cada questão
@@ -51,7 +50,7 @@ async function insertQuestion (testId, questionInfo) {
     await conn.query(`SET @@auto_increment_offset=1;`)
     await conn.query(`ALTER TABLE heroku_65f5ce87b15f505.question AUTO_INCREMENT = 1;`)
     return await conn.query(`INSERT INTO heroku_65f5ce87b15f505.question (idQuiz, question, alternativeA, alternativeB, alternativeC, alternativeD, alternativeE, answerExpected)
-    VALUES (${testId},${header}, ${a}, ${b}, ${c}, ${d}, ${e}, ${answer});`)
+    VALUES (${testId}, "${header}", "${a}", "${b}", "${c}", "${d}", "${e}", "${answer}");`)
 }
 
 //  Retorna as provas criadas pelo professor logado

@@ -86,8 +86,8 @@ router
     .post((req, res) => {
         const userId = req.session.user.id;
         const testInfo = req.body;
-        console.log(req.body)
-        db.insertTest(userId, testInfo);
+        console.log("body:", req.body);
+        db.insertTest(userId, 1, testInfo);
     })
 
 module.exports = router;
